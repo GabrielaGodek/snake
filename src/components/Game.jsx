@@ -15,12 +15,9 @@ export default class Game extends Component {
 
         // this.nextDirection = null
 
+        this.handleKey = this.handleKey.bind(this)
         this.start = this.start.bind(this)
         this.frame = this.frame.bind(this)
-        this.handleKey = this.handleKey.bind(this)
-        // this.frame = () => this.frame();
-        // this.start = () => this.start();
-        // this.handleKey = () => this.handleKey();
     }
 
     componentDidMount() {
@@ -65,9 +62,9 @@ export default class Game extends Component {
         snake.unshift(head)
 
 
-        if (this.nextDirection) {
+        if (this.nextDirection !== undefined) {
             direction = this.nextDirection
-            this.nextDirection = null
+            // this.nextDirection = null
         }
 
         this.setState({
@@ -84,10 +81,11 @@ export default class Game extends Component {
 
     handleKey = (event) => {
         const direction = event.nativeEvent.keyCode
+        // console.log(direction)
 
         const diff = Math.abs(this.state.direction - direction)
 
-        if (dirs[direction] && diff !== 0 && diff !== 2) {
+        if (dirs[direction] && diff !== 0 && diff === 1) {
             this.nextDirection = direction
             console.log(this.nextDirection)
         }
@@ -116,9 +114,13 @@ export default class Game extends Component {
     render() {
         const { board } = this.state
         return (
-            <Cells
-                handleKey={this.handleKey}
-                board={board} />
+            <>
+                <header>Snake</header>
+                <Cells
+                    handleKey={this.handleKey}
+                    board={board} />
+                <footer></footer>
+            </>
         )
     }
 }

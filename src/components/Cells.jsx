@@ -15,7 +15,7 @@ function Cells({ board, handleKey }) {
                 <div key={uniqueKey}
                     tabIndex={0}
                     onKeyDown={handleKey}
-                    className={classType + ' cell'}
+                    className={classType}
                     style={{ width: boardConfig.cell, height: boardConfig.cell }}
                 />)
         }

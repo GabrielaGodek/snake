@@ -1,16 +1,16 @@
 const boardConfig = {
-    rows: 20,
-    cols: 20,
-    cell: 30
+    rows: 30,
+    cols: 30,
+    cell: 15
 }
 const ids = {
     body: 1, food: 2
 }
 const start = 44
 const keys = {
-    left: 37,
     up: 38,
     right: 39,
+    left: 37,
     down: 40
 }
 const dirs = {
