@@ -5,8 +5,9 @@ export const content = [
 export const theme = {
   extend: {},
   colors: {
-    'background':'#557153',
-    'snake': '#7D8F69'
+    'background':'#A9AF7E',
+    'snake': '#557153',
+    'food': '#6C3428'
   },
 };
 export const plugins = [];

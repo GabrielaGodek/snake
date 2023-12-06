@@ -1,19 +1,23 @@
-export const boardConfig = {
+const boardConfig = {
     rows: 20,
     cols: 20,
     cell: 30
 }
-export const BODY = 1, FOOD = 2
-export const START = 44
-export const KEYS = {
+const ids = {
+    body: 1, food: 2
+}
+const start = 44
+const keys = {
     left: 37,
     up: 38,
     right: 39,
     down: 40
 }
-export const DIRS = {
+const dirs = {
     37: true,
     38: true,
     39: true,
     40: true
 }
+
+export {boardConfig, start, ids, keys, dirs}
