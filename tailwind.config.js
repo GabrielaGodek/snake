@@ -7,7 +7,8 @@ export const theme = {
   colors: {
     'background':'#A9AF7E',
     'snake': '#557153',
-    'food': '#6C3428'
+    'food': '#6C3428',
+    'black': '#000'
   },
 };
 export const plugins = [];

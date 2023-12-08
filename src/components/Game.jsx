@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Cells from './Cells'
+import Header from './Header'
+import Footer from './Footer'
 import { boardConfig, start, ids, keys, dirs } from './Config'
 
 
@@ -38,89 +40,114 @@ export default class Game extends Component {
     }
 
     frame() {
-        let { snake, board, direction } = this.state
-
-        const head = this.getNextIndex(snake[0], direction)
-        const food = board[head] === ids.food || snake.length === 1
-
-        if (snake.indexOf(head) !== -1) {
-            this.setState({ gameOver: true })
-        }
-        if (food) {
-            const maxCells = boardConfig.rows * boardConfig.cols
-            let i
-            do {
-                i = Math.floor(Math.random() * maxCells)
-            } while (board[i])
-
-            board[i] = ids.food
-        } else {
-            board[snake.pop()] = null
-        }
-
-        board[head] = ids.body
-        snake.unshift(head)
-
-
-        if (this.nextDirection !== undefined) {
-            direction = this.nextDirection
-            // this.nextDirection = null
-        }
-
-        this.setState({
-            board,
-            snake,
-            direction
-        }, () => {
-            setTimeout(() => {
-                this.frame()
-            }, 300);
-        })
-
-    }
-
-    handleKey = (event) => {
-        const direction = event.nativeEvent.keyCode
-        // console.log(direction)
-
-        const diff = Math.abs(this.state.direction - direction)
-
-        if (dirs[direction] && diff !== 0 && diff === 1) {
-            this.nextDirection = direction
-            console.log(this.nextDirection)
-        }
-
-    }
-
-    getNextIndex(head, direction) {
-        let x = head % boardConfig.cols;
-        let y = Math.floor(head / boardConfig.cols);
-
-        if (direction === keys.up) {
-            y = y <= 0 ? boardConfig.rows - 1 : y - 1;
-        } else if (direction === keys.down) {
-            y = y >= boardConfig.rows ? 0 : y + 1;
-        } else if (direction === keys.left) {
-            x = x <= 0 ? boardConfig.cols - 1 : x - 1;
-        } else if (direction === keys.right) {
-            x = x >= boardConfig.cols - 1 ? 0 : x + 1;
-        } else {
+        const { snake, board, direction } = this.state;
+    
+        const head = this.getNextIndex(snake[0], direction);
+        const isFoodEaten = board[head] === ids.food || snake.length === 1;
+    
+        if (snake.includes(head)) {
+            this.setState({ gameOver: true });
             return;
         }
-
-        return (boardConfig.cols * y) + x;
+    
+        if (isFoodEaten) {
+            this.placeFoodOnBoard();
+        } else {
+            const tail = snake.pop();
+            board[tail] = null;
+        }
+    
+        board[head] = ids.body;
+        snake.unshift(head);
+    
+        if (this.nextDirection !== undefined) {
+            this.setState({ direction: this.nextDirection });
+            // this.nextDirection = null;
+        }
+    
+        this.setState({ board, snake, direction }, () => {
+            setTimeout(() => {
+                this.frame();
+            }, 300);
+        });
     }
+    
+    placeFoodOnBoard() {
+        const { board } = this.state;
+        const maxCells = boardConfig.rows * boardConfig.cols;
+        let foodIndex;
+    
+        do {
+            foodIndex = Math.floor(Math.random() * maxCells);
+        } while (board[foodIndex]);
+    
+        board[foodIndex] = ids.food;
+    }
+    
+
+    handleKey = (event) => {
+        const direction = event.nativeEvent.keyCode;
+        // console.log(direction)
+    
+        const isValidDirection = dirs[direction];
+        const isDirectionChange = Math.abs(this.state.direction - direction) === 1;
+    
+        if (isValidDirection && isDirectionChange) {
+            this.nextDirection = direction;
+            console.log(this.nextDirection);
+        }
+    }
+    
+
+    getNextIndex(head, direction) {
+        const x = head % boardConfig.cols;
+        const y = Math.floor(head / boardConfig.cols);
+    
+        switch (direction) {
+            case keys.up:
+                return this.calculateNextIndex(x, y - 1, boardConfig.rows);
+            case keys.down:
+                return this.calculateNextIndex(x, y + 1, boardConfig.rows);
+            case keys.left:
+                return this.calculateNextIndex(x - 1, y, boardConfig.cols);
+            case keys.right:
+                return this.calculateNextIndex(x + 1, y, boardConfig.cols);
+            default:
+                return head;
+        }
+    }
+    
+    calculateNextIndex(x, y, limit) {
+        if (x < 0) {
+            x = limit - 1;
+        } else if (x >= limit) {
+            x = 0;
+        }
+    
+        if (y < 0) {
+            y = limit - 1;
+        } else if (y >= limit) {
+            y = 0;
+        }
+    
+        return (limit * y) + x;
+    }
+    
 
     render() {
-        const { board } = this.state
+        const { board, snake } = this.state
         return (
-            <>
-                <header>Snake</header>
+            <main className="m-10">
+                <header>
+                    <Header />
+                </header>
                 <Cells
                     handleKey={this.handleKey}
                     board={board} />
-                <footer></footer>
-            </>
+                <footer>
+                    <Footer score={snake.length}/>
+                </footer>
+            </main>
         )
     }
 }
