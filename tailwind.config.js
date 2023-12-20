@@ -8,7 +8,8 @@ export const theme = {
     'background':'#A9AF7E',
     'snake': '#557153',
     'food': '#6C3428',
-    'black': '#000'
+    'black': '#000',
+    'white': '#fff',
   },
 };
 export const plugins = [];

@@ -9,6 +9,9 @@ body{
     height: 100svh;
     width: 100svw;
 }
+body{
+    overflow: hidden;
+}
 #root {
     display: flex;
     justify-content: center;

@@ -22,7 +22,6 @@ The Snake Game project is a classic implementation of the popular Snake game usi
 - react: `^18.2.0` 
 - react-dom: `^18.2.0`
 - tailwindcss: `^3.3.6` 
-- webpack: `^5.89.0` 
 
 
 ### License
