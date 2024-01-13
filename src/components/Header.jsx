@@ -65,7 +65,7 @@ export default class Header extends Component {
                     </h2>
                     {isScoreTableExpanded && (
                         <ul>
-                            {playerScores.length > 0 ? (
+                            {Object.keys(playerScores).length > 0 ? (
                                 Object.entries(playerScores)
                                     .sort(([, valueA], [, valueB]) => valueB - valueA)
                                     .map(([key, value], i) => (
