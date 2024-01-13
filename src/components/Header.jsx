@@ -30,7 +30,6 @@ export default class Header extends Component {
         this.setState({
             playerScores: scores
         })
-        console.log(scores)
     }
 
     render() {
@@ -38,14 +37,13 @@ export default class Header extends Component {
         return (
             <header className="">
                 <h1 className='absolute top-0 left-[50%] translate-x-[-50%] my-8 text-4xl font-extrabold leading-none text-black md:text-5xl lg:text-6xl text-center'>SNAKE</h1>
-                <nav className='absolute top-10 right-10'>
+                <nav className='absolute top-10 right-10 w-40'>
                     <h2
-                    className={`text-2xl font-extrabold leading-none cursor-pointer relative ${isLegendExpanded ? 'expanded' : ''}`}
-                    onClick={this.toggleLegend}
-                >
-                    <img src="click.gif" alt="click here to see a legend" width='40px' className='absolute -right-6 -bottom-6' />
-                    Legend
-                </h2>
+                        className={`text-2xl font-extrabold leading-none cursor-pointer relative ${isLegendExpanded ? 'expanded' : ''}`}
+                        onClick={this.toggleLegend}
+                    >
+                        Legend
+                    </h2>
                     {isLegendExpanded && (
                         <ul>
                             <li className='flex items-center gap-2'>
@@ -63,18 +61,21 @@ export default class Header extends Component {
                         </ul>
                     )}
 
-                    <h2 className={`text-2xl font-extrabold leading-none cursor-pointer relative ${isScoreTableExpanded ? 'expanded' : ''}`} onClick={this.toggleScoreTable}>
-                        <img src="click.gif" alt="click here to see a legend" width='40px' className='absolute -right-6 -bottom-6' />Score table
+                    <h2 className={`text-2xl font-extrabold leading-none cursor-pointer relative ${isScoreTableExpanded ? 'expanded' : ''}`} onClick={this.toggleScoreTable}>Score table
                     </h2>
                     {isScoreTableExpanded && (
                         <ul>
-                            {Object.entries(playerScores)
-                                .sort(([, valueA], [, valueB]) => valueB - valueA)
-                                .map(([key, value], i) => (
-                                    <li key={key}>
-                                        <b>{i + 1}</b>.&nbsp;{key}:&nbsp;{value}
+                            {playerScores.length > 0 ? (
+                                Object.entries(playerScores)
+                                    .sort(([, valueA], [, valueB]) => valueB - valueA)
+                                    .map(([key, value], i) => (
+                                        <li key={key}>
+                                            <b>{i + 1}</b>.&nbsp;{key}:&nbsp;{value}
                                         </li>
-                                ))}
+                                    ))
+                            ) : (
+                                <li>No scores available.</li>
+                            )}
                         </ul>
                     )}
                 </nav>
