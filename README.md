@@ -10,7 +10,7 @@ Have fun!
 1. Clone the repository `git clone https://github.com/GabrielaGodek/snake`
 2. Change directory `cd snake`
 3. Install dependencies `npm install`
-4. At the terminal run the command n`pm run start`
+4. At the terminal run the command `npm run start`
 5. It will open localhost at http://127.0.0.1:3000/
 
 ### Structure
