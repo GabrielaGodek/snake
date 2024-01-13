@@ -4,7 +4,9 @@ const boardConfig = {
     cell: 15
 }
 const ids = {
-    body: 1, food: 2
+    body: 1,
+    food: 2,
+    bomb: 3
 }
 const start = 44
 const keys = {
@@ -20,4 +22,4 @@ const dirs = {
     40: true
 }
 
-export {boardConfig, start, ids, keys, dirs}
+export { boardConfig, start, ids, keys, dirs }

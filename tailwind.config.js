@@ -7,7 +7,8 @@ export const theme = {
   colors: {
     'background':'#A9AF7E',
     'snake': '#557153',
-    'food': '#6C3428',
+    'bomb': '#000',
+    'food': '#a3695d',
     'black': '#000',
     'white': '#fff',
   },

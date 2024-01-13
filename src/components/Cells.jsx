@@ -10,7 +10,7 @@ function Cells({ board, handleKey }) {
         for (let col = 0; col < boardConfig.cols; col++) {
             const uniqueKey = `${row}-${col}`
             const value = board[boardConfig.cols * row + col]
-            const classType = value === ids.body ? 'bg-snake' : (value === ids.food ? 'bg-food' : '')
+            const classType = value === ids.body ? 'bg-snake' : (value === ids.food ? 'bg-food' : (value === ids.bomb ? 'bg-bomb' : ''))
             boardCells.push(
                 <div key={uniqueKey}
                     tabIndex={0}

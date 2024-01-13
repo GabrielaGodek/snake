@@ -1,6 +1,8 @@
 # Study project: Snake Game
+The Snake Game project is a classic implementation of the popular Snake game using React as the frontend framework and Tailwind CSS for styling. The game involves controlling a snake that moves around a grid, eating food to grow longer, while avoiding collisions with itself and the bombs.
 
-The Snake Game project is a classic implementation of the popular Snake game using React as the frontend framework and Tailwind CSS for styling. The game involves controlling a snake that moves around a grid, eating food to grow longer, while avoiding collisions with itself and the boundaries.
+**With each consumed piece of food, the speed increases, and a new bomb is randomly placed on the board.**
+Good luck!
 
 ## Installation
 1. Clone the repository `git clone https://github.com/GabrielaGodek/snake`
@@ -10,7 +12,6 @@ The Snake Game project is a classic implementation of the popular Snake game usi
 5. It will open localhost at http://127.0.0.1:3000/
 
 ### Structure
-
 - `src/`: Contains the source code of the React application.
   - `components/`: React components used in the project.
   - `styles/`: Stylesheets, including Tailwind CSS files.
@@ -18,7 +19,6 @@ The Snake Game project is a classic implementation of the popular Snake game usi
 - `public/`: Public assets and the HTML template.
 
 ## Dependencies
-
 - react: `^18.2.0` 
 - react-dom: `^18.2.0`
 - tailwindcss: `^3.3.6` 
