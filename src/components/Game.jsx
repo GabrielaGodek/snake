@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Cells from './Cells'
 import Header from './Header'
 import Footer from './Footer'
+import StartGame from './StartGame'
 import GameOver from './GameOver'
 import { boardConfig, start, ids, keys, dirs } from './Config'
 
@@ -13,12 +14,14 @@ export default class Game extends Component {
             board: [],
             snake: [],
             direction: null,
-            gameOver: false
+            gameOver: false,
+            isNicknameProvided: false,
         }
 
         this.handleKey = this.handleKey.bind(this)
         this.start = this.start.bind(this)
         this.frame = this.frame.bind(this)
+        this.setNicknameProvided = this.setNicknameProvided.bind(this);
     }
 
     componentDidMount() {
@@ -71,7 +74,6 @@ export default class Game extends Component {
 
         this.setState({ board, snake, direction }, () => {
             const delay = 400 - (snake.length - 1) * 50
-            console.log(delay)
             setTimeout(() => {
                 this.frame()
             }, Math.max(delay, 50))
@@ -148,20 +150,31 @@ export default class Game extends Component {
         return (limit * y) + x
     }
 
+    setNicknameProvided(nickname) {
+        this.setState({
+            isNicknameProvided: true,
+            nickname: nickname
+        });
+    }
 
     render() {
-        const { board, snake, gameOver } = this.state
+        const { board, snake, gameOver, isNicknameProvided, nickname } = this.state;
         return (
             <main className="m-10">
                 <Header />
-                {gameOver ? <GameOver score={snake.length} /> : <Cells
-                    handleKey={this.handleKey}
-                    board={board} />}
+                {!isNicknameProvided && <StartGame setNicknameProvided={this.setNicknameProvided} />}
+                {isNicknameProvided && (
+                    <>
+                        {gameOver ? (
+                            <GameOver score={snake.length - 2} nickname={nickname} />
+                        ) : (
+                            <Cells handleKey={this.handleKey} board={board} />
+                        )}
+                        <Footer score={snake.length - 2} />
 
-                <footer>
-                    <Footer score={snake.length} />
-                </footer>
+                    </>
+                )}
             </main>
-        )
+        );
     }
 }

@@ -1,8 +1,10 @@
 # Study project: Snake Game
 The Snake Game project is a classic implementation of the popular Snake game using React as the frontend framework and Tailwind CSS for styling. The game involves controlling a snake that moves around a grid, eating food to grow longer, while avoiding collisions with itself and the bombs.
 
-**With each consumed piece of food, the speed increases, and a new bomb is randomly placed on the board.**
-Good luck!
+With each piece of food consumed, the speed increases, and a new bomb is randomly placed on the board.
+You can find a legend in the top-right corner. Below it, you'll also see your top scores.
+
+Have fun!
 
 ## Installation
 1. Clone the repository `git clone https://github.com/GabrielaGodek/snake`
@@ -24,8 +26,10 @@ Good luck!
 - tailwindcss: `^3.3.6` 
 
 
-### License
-This project is available for use under the MIT License.
+## Preview
+Live demo: https://snake-g0gab1s.vercel.app/
+
+![Snake preview image](public/snake_preview.png)
 
 ### Authors
 Gabriela Godek

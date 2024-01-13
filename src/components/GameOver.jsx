@@ -1,10 +1,22 @@
 import React, { Component } from 'react'
 
-export default class Footer extends Component {
+export default class GameOver extends Component {
 
+    setScore() {
+        const { score, nickname } = this.props
+        console.log(score)
+        const existingPlayerData = JSON.parse(localStorage.getItem('player')) || {}
+        const updatedPlayerData = {
+            ...existingPlayerData,
+            [nickname]: score
+        }
+        localStorage.setItem('player', JSON.stringify(updatedPlayerData));
+    }
+    componentDidMount() {
+        this.setScore()
+    }
     restart() {
         window.location.reload()
-        console.log('reload')
     }
     render() {
         return (
