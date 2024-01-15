@@ -13,6 +13,8 @@ Have fun!
 4. At the terminal run the command `npm run start`
 5. It will open localhost at http://127.0.0.1:3000/
 
+Or enjoy the game right away: `https://snake-g0gab1s.vercel.app/`
+
 ### Structure
 - `src/`: Contains the source code of the React application.
   - `components/`: React components used in the project.
